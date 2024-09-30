@@ -1,4 +1,4 @@
-package repository;
+package spring_project.demo.repository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -18,6 +18,7 @@ class MemoryRepositoryTest {
     public void afterEach() {
         repository.clearStore();
     }
+
     @Test
     public void save() {
         Member member = new Member();
