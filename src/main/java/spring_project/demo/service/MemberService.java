@@ -9,14 +9,13 @@ import spring_project.demo.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
-// 네이밍 롤, repository는 단순 작업, service는 전체적인 작업 느낌으로 짓는게 좋음
+// 네이밍 롤, repository는 단순 작업(회원정보 저장, 삭제...), service는 전체적인 작업 느낌(ex. 회원가입)으로 짓는게 좋음
 
-@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
     // 생성자를 통해 repository 주입
-    @Autowired
+    // @Autowired: spring bean이 등록되지 않으면 사용할 수 없음
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
