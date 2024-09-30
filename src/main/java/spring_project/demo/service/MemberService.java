@@ -1,5 +1,7 @@
 package spring_project.demo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring_project.demo.domain.Member;
 import spring_project.demo.repository.MemberRepository;
 import spring_project.demo.repository.MemoryMemberRepository;
@@ -9,10 +11,12 @@ import java.util.Optional;
 
 // 네이밍 롤, repository는 단순 작업, service는 전체적인 작업 느낌으로 짓는게 좋음
 
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    // 생성자를 통해 repository 받음
+    // 생성자를 통해 repository 주입
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
