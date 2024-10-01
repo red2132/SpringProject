@@ -1,5 +1,6 @@
 package spring_project.demo.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring_project.demo.domain.Member;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 // 네이밍 롤, repository는 단순 작업(회원정보 저장, 삭제...), service는 전체적인 작업 느낌(ex. 회원가입)으로 짓는게 좋음
 
+@Transactional // jpa는 데이터가 변경될 때 트랜잭션 안에서 실행돼야 함
 public class MemberService {
     private final MemberRepository memberRepository;
 

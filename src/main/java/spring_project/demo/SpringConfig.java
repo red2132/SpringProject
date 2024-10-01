@@ -1,9 +1,11 @@
 package spring_project.demo;
 
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import spring_project.demo.repository.JdbcTemplateMemberRepository;
+import spring_project.demo.repository.JpaMemberRepository;
 import spring_project.demo.repository.MemberRepository;
 import spring_project.demo.service.MemberService;
 
@@ -14,11 +16,11 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
     // 설정파일을 보고 자체적으로 spring에서 bean 생성
-    private final DataSource dataSource;
+    private EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
 
     //  memberService와 memberRepository를 Bean에 등록
@@ -34,8 +36,9 @@ public class SpringConfig {
         /*
          return new MemoryMemberRepository();
          return new JdbcMemberRepository(dataSource);
+         return new JdbcTemplateMemberRepository(dataSource);
         */
-        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
 }
