@@ -16,29 +16,25 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
     // 설정파일을 보고 자체적으로 spring에서 bean 생성
-    private EntityManager em;
 
-    @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    private final MemberRepository memberRepository;
+
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
-    //  memberService와 memberRepository를 Bean에 등록
-    
+    //  memberService를 Bean에 등록
     @Bean
     public MemberService memberService() {
         // 등록되어 있는 repository를 service에 주입
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
-        /*
-         return new MemoryMemberRepository();
-         return new JdbcMemberRepository(dataSource);
-         return new JdbcTemplateMemberRepository(dataSource);
-        */
-        return new JpaMemberRepository(em);
-    }
-
+//    @Bean
+//    public MemberRepository memberRepository() {
+//         return new MemoryMemberRepository();
+//         return new JdbcMemberRepository(dataSource);
+//         return new JdbcTemplateMemberRepository(dataSource);
+//         return new JpaMemberRepository(em);
+//    }
 }
