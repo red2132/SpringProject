@@ -3,7 +3,7 @@ package spring_project.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import spring_project.demo.repository.JdbcMemberRepository;
+import spring_project.demo.repository.JdbcTemplateMemberRepository;
 import spring_project.demo.repository.MemberRepository;
 import spring_project.demo.service.MemberService;
 
@@ -31,8 +31,11 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        // return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        /*
+         return new MemoryMemberRepository();
+         return new JdbcMemberRepository(dataSource);
+        */
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 
 }
