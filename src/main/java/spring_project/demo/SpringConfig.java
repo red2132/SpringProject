@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import spring_project.demo.aop.TimeTraceAop;
 import spring_project.demo.repository.JdbcTemplateMemberRepository;
 import spring_project.demo.repository.JpaMemberRepository;
 import spring_project.demo.repository.MemberRepository;
@@ -28,6 +29,11 @@ public class SpringConfig {
     public MemberService memberService() {
         // 등록되어 있는 repository를 service에 주입
         return new MemberService(memberRepository);
+    }
+
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
 
 //    @Bean
